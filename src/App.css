@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: 'Rokkitt', serif;
 }
 
 .App-logo {
@@ -20,6 +21,10 @@
 
 .App-intro {
   font-size: large;
+}
+
+.link {
+  margin: 20px 20px 20px 0;
 }
 
 @keyframes App-logo-spin {

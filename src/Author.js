@@ -4,10 +4,10 @@ class Author extends Component {
 
   render() {
     return (
-      <p>Written by {this.props.text}</p>
+      <p>{this.props.author}</p>
     )
   }
 
 }
 
-export default Author
+export default Author;

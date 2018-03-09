@@ -1,40 +1,51 @@
 import React, { Component } from 'react';
-import Comment from './Comment';
-import Author from './Author';
+import Home from './Home';
+import Blog from './Blog';
+import FavoriteMovie from './FavoriteMovie';
+import FavoriteFood from './FavoriteFood';
+import About from './About';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
 import './App.css';
 
-class Post extends Component {
-  render() {
-
-    const { title, authors, body, comments } = this.props
-
-    {/*let allComments = [
-      <Comment text={comments[0]}/>,
-      <Comment text={comments[1]}/>,
-      <Comment text={comments[2]}/>
-    ] */}
-
-    {/*map function returns a new array*/}
-
-    let allComments = comments.map(function(comment, index) {
-      return <Comment key={index} text={comment} id={index}/>
-    })
-
-    let allAuthors = authors.map(function(author, index) {
-      return <Author key={index} text={author} id={index}/>
-    })
-
-    return (
-      <div>
-        <h1>{title}</h1>
-        {allAuthors}
-        <h4>{body}</h4>
-        <br/>
-        <h3>Comments:</h3>
-        {allComments}
-      </div>
-    );
-  }
+var post = {
+  title: "Dinosaurs are awesome",
+  authors: [
+    "Stealthy Stegosaurus",
+    "Tiny T-Rex",
+    "Ivory Iguanodon"
+  ],
+  body: "Watch out for Stealthy Stegosaurus's spikes!",
+  comments: [
+    "First!",
+    "Great post!",
+    "Hire this author now!"
+  ]
 }
 
-export default Post;
+class App extends Component {
+  render() {
+    return(
+      <Router>
+        <div>
+          <nav>
+            <Link to='/' className="link">Home</Link>{' '}
+            <Link to='/blog' className="link">Blog</Link>{' '}
+            <Link to='/favMovie' className="link">Favorite Movie</Link>{' '}
+            <Link to='/favFood' className="link">Favorite Food</Link>{' '}
+            <Link to='/about' className="link">About</Link>
+          </nav>
+          <Route exact path='/' component={Home} />
+          <Route path='/blog' component={() => <Blog post={post} />} />
+          <Route path='/favMovie' component={FavoriteMovie} />
+          <Route path='/favFood' component={FavoriteFood} />
+          <Route path="/about" component={About} />
+        </div>
+      </Router>
+    )
+  }
+}
+export default App;
